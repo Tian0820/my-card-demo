@@ -4,7 +4,8 @@
   "description": "A greeting card developed by Node.js + Vue.js + TypeScript.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Tian",
   "license": "ISC",
@@ -12,6 +13,17 @@
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
-    "koa-static": "^4.0.2"
+    "koa-static": "^4.0.2",
+    "connect-timeout": "^1.7.0",
+    "cookie-parser": "^1.3.5",
+    "ejs": "2.5.7",
+    "leancloud-storage": "^3.0.0",
+    "leanengine": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": "8.x"
   }
 }
