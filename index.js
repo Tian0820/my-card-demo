@@ -4,6 +4,18 @@ const router = require('koa-router')(); // 引入各种依赖
 const path =require('path')
     , serve = require('koa-static');
 
+const host = process.env.HOST || '0.0.0.0'
+const port = process.env.LEANCLOUD_APP_PORT || process.env.PORT || 3000
+
+const NODE_ENV = process.env.NODE_ENV || 'development';
+if (NODE_ENV === 'development') {
+    // 当前环境为「开发环境」，是由命令行工具启动的
+} else if(NODE_ENV == 'production') {
+    // 当前环境为「生产环境」，是线上正式运行的环境
+} else {
+    // 当前环境为「预备环境」
+}
+
 const AV = require('leanengine');
 
 AV.init({
