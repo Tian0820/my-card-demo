@@ -1,22 +1,8 @@
 const Koa = require('koa');
-const router = require('koa-router')(); // 引入各种依赖
-
-const path =require('path')
-    , serve = require('koa-static');
-
-const host = process.env.HOST || '0.0.0.0'
-const port = process.env.LEANCLOUD_APP_PORT || process.env.PORT || 3000
-
-const NODE_ENV = process.env.NODE_ENV || 'development';
-if (NODE_ENV === 'development') {
-    // 当前环境为「开发环境」，是由命令行工具启动的
-} else if(NODE_ENV == 'production') {
-    // 当前环境为「生产环境」，是线上正式运行的环境
-} else {
-    // 当前环境为「预备环境」
-}
-
+const Router = require('koa-router');
 const AV = require('leanengine');
+const app = new Koa();
+const router = new Router();
 
 AV.init({
     appId: process.env.LEANCLOUD_APP_ID || 'GLd1iHuvtxpzpWilAoasYC57-gzGzoHsz',
@@ -24,30 +10,40 @@ AV.init({
     masterKey: process.env.LEANCLOUD_APP_MASTER_KEY || 'rQuB50Lo92FJD9es4KHTQC9x'
 });
 
-const app = new Koa();
-
 app.use(require('koa-bodyparser')());
 app.use(AV.koa());
-app.listen(process.env.LEANCLOUD_APP_PORT);
+// app.listen(process.env.LEANCLOUD_APP_PORT);
 
-app.use(function *(next) {
-    if (this.url === '/todos') {
-        return new AV.Query('Todo').find().then(todos => {
-            this.body = todos;
-        });
-    } else {
-        yield next;
+// app.use(serve(path.resolve('public')));
+
+app.use(async (ctx) => {
+    if (ctx.url === `/api/user/get` && ctx.method === 'POST') {
+        let response = {
+            message: 'success'
+        }
+
+        if (ctx.request.body.name === '刘昊然') {
+            response.info = '1111'
+        } else if (ctx.request.body.name === '吴彦祖') {
+            response.info = '2222'
+        } else if (ctx.request.body.name === '吴磊') {
+            response.info = '3333'
+        } else {
+            response.info = '????'
+        }
+
+        ctx.body = response
     }
-});
+    else { // 404
+        ctx.body = '404 Not Found!!!'
+    }
+})
 
-app.use(serve(path.resolve('public')));
 
-app.on('error', function(err, ctx){
+app.on('error', function (err, ctx) {
     console.log('server error', err);
 });
 
-// app.listen(8889,() => {
-//     console.log('Koa is listening in 8889');
-// });
+app.listen(3000);
 
 module.exports = app;
