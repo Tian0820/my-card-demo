@@ -39,6 +39,19 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+// app.use(async (ctx) => {
+//     if (ctx.url === '/user/get' && ctx.method === 'GET') {
+//         let response = {
+//             message: 'success'
+//         }
+//
+//         ctx.body = response
+//     }
+//     else { // 404
+//         ctx.body = '404 Not Found!!!'
+//     }
+// })
+
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
