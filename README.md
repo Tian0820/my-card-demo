@@ -12,12 +12,15 @@ npm install
 npm start
 ```
 
-##Introduction
-###Cover Page
+## Introduction
+
+### Cover Page
 ![](https://github.com/Tian0820/my-card-server/raw/master/data/cover.png)  
-###Greeting Page
+
+### Greeting Page
 ![](https://github.com/Tian0820/my-card-server/raw/master/data/greeting.png)  
-###End Page
+
+### End Page
 ![](https://github.com/Tian0820/my-card-server/raw/master/data/end.png)  
 
 
