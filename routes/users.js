@@ -35,6 +35,25 @@ router.post('/update', async function (ctx) {
     }
 })
 
+router.post('/add', async function (ctx) {
+
+    let oldFriend = await database.getByName(ctx.request.body.name)
+
+    if (oldFriend.length !== 0) {
+        ctx.body = {
+            result: 'error',
+            message: '好友名称已存在！'
+        }
+    } else {
+        let info = await database.addNewFriend(ctx.request.body.name, ctx.request.body.sex, ctx.request.body.tags)
+        ctx.body = {
+            result: 'success',
+            message: '新增成功！'
+        }
+    }
+
+})
+
 router.get('/bar', function (ctx, next) {
     ctx.body = 'this is a users/bar response'
 })
