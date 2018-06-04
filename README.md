@@ -23,4 +23,6 @@ npm start
 ### End Page
 ![](https://github.com/Tian0820/my-card-server/raw/master/data/end.png)  
 
+### Manage Page
+![](https://github.com/Tian0820/my-card-server/raw/master/data/manage.png)  
 
