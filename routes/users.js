@@ -6,7 +6,7 @@ router.prefix('/api/user')
 
 router.get('/get', async function (ctx) {
     let info = await database.getByName(ctx.query.name)
-    ctx.body = info
+    ctx.body = info[0]
 });
 
 router.get('/getAll', async function (ctx) {
